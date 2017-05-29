@@ -1,0 +1,39 @@
+<html>
+<script>
+var reverseStr = function(s, k) {
+    var reversedStr = '';
+    function reverse(s, k, reversedStr){
+        if(s.length/(2*k) >= 1){
+            var firstHalf = s.slice(0, 2*k);            
+            var secondHalf = s.slice(2*k);
+            var firstHalfInChar = firstHalf.split('');
+            
+            for(var i = k-1; i >= 0; i--){
+                reversedStr += firstHalfInChar[i];
+            }
+            for(i = k; i < 2*k; i++){
+                reversedStr += firstHalfInChar[i];
+            }
+            return reverse(secondHalf, k, reversedStr);
+        }else if(s.length%(2*k) >= k){
+            var sInChar = s.split('');
+            for( i = k-1; i >= 0; i--){
+                reversedStr += sInChar[i];
+            }
+            for( i = k; i < sInChar.length; i++){
+                reversedStr += sInChar[i];
+            }
+            return reversedStr;
+        }else if(s.length%(2*k) < k){
+            sInChar = s.split('');
+            for( i = sInChar.length-1; i >= 0; i--){
+                reversedStr += sInChar[i];
+            }
+            return reversedStr;
+        }           
+    }
+    return reverse(s, k, reversedStr);     
+};
+reverseStr('abcd', 2);
+</script>
+</html>

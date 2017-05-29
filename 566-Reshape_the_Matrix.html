@@ -1,0 +1,22 @@
+<html>
+<script>
+var matrixReshape = function(nums, r, c) {
+    const rOriginal = nums.length;
+    const cOriginal = nums[0].length;
+    if(rOriginal * cOriginal !== r * c){
+        return nums;
+    }else{
+        let arr = [];
+        nums.forEach(function(rowNums){
+            arr = arr.concat(rowNums);
+        });
+        let newNum = [];
+        for(var i = 0; i < r; i++){
+            newNum.push(arr.splice(0, c));
+        }
+        return newNum;
+    }
+};
+matrixReshape([[1,2],[3,4]],1,4);
+</script>
+</html>

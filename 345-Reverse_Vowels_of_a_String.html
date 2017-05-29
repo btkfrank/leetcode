@@ -1,0 +1,24 @@
+<html>
+<script>
+var reverseVowels = function(s) {
+    var toCheck = ['a', 'A', 'e', 'E', 'i', 'I', 'o', 'O', 'u', 'U'];
+    var toRevert = [];
+    var newString = '';
+    for(var i = 0; i < s.length; i++){
+        if(toCheck.indexOf(s.charAt(i)) >= 0){
+            toRevert.push(s.charAt(i));
+        }
+    }
+    for(var i = 0; i < s.length; i++){
+        if(toCheck.indexOf(s.charAt(i)) >= 0){
+            newString += toRevert.pop();
+        }else{
+            newString += s.charAt(i);
+        }
+    }
+    return newString;
+    
+};
+reverseVowels('hello');
+</script>
+</html>
