@@ -1,0 +1,51 @@
+<html>
+<script>
+/**
+ * @param {string[]} words
+ * @return {string[]}
+ */
+ 
+// var findWords = function(words) {
+//     let rows = [];
+//     const row1 = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'];
+//     const row2 = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'];
+//     const row3 = ['Z', 'X', 'C', 'V', 'B', 'N', 'M'];
+//     rows = rows.concat([row1, row2, row3]);
+//     // rows.push(...[row1, row2, row3]);
+//     // rows.push.apply(rows,[row1, row2, row3]);
+//     let found = [];
+//     for(let word of words){
+//         let wordToUpperCase = word.toUpperCase();
+//         let counts = [0, 0, 0];
+//         for(let i = 0; i < wordToUpperCase.length; i++){
+//             counts[0] += (rows[0].indexOf(wordToUpperCase.charAt(i)) === -1 ? 0 : 1);
+//             counts[1] += (rows[1].indexOf(wordToUpperCase.charAt(i)) === -1 ? 0 : 1);
+//             counts[2] += (rows[2].indexOf(wordToUpperCase.charAt(i)) === -1 ? 0 : 1);
+//         }
+//         if(counts.filter(count => count === 0).length === 2){
+//             found.push(word);
+//         }
+//     }
+//     return found;
+// };
+
+var findWords = function(words) {
+    return words.filter((w) => {
+        // remove word from array if it fails matching all three rows
+        if (
+            !/^[qwertyuiop]*$/i.test(w) &&
+            !/^[asdfghjkl]*$/i.test(w) &&
+            !/^[zxcvbnm]*$/i.test(w)
+        ) return false;
+        
+        return true;
+    });
+};
+
+console.log(findWords(["Hello","Alaska","Dad","Peace"]));
+
+</script>
+</html>
+
+
+
