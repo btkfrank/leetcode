@@ -1,0 +1,19 @@
+<html>
+<script>
+var distributeCandies = function(candies) {
+    let kinds = {};
+    for (let i = 0; i < candies.length; i++) {
+        if(typeof kinds[candies[i]] === "undefined"){
+            kinds[candies[i]] = 1;
+        }else{
+            kinds[candies[i]]++;
+        }
+    }
+    return Object.keys(kinds).length > candies.length/2 ? candies.length/2 : Object.keys(kinds).length;
+};
+console.log(distributeCandies([1,1,2,3]));
+
+</script>
+</html>
+
+

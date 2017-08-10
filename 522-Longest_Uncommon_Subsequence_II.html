@@ -1,0 +1,43 @@
+<html>
+<script>
+/**
+ * @param {string[]} strs
+ * @return {number}
+ */
+var findLUSlength = function(strs) {   
+    
+    let isSubSequence = function(str1, str2){//check if str1 is subsequence of str2        
+        while(str1.length>0){
+            let idx = str2.indexOf(str1.charAt(0));
+            if(idx !== -1){
+                str2 = str2.slice(idx+1);  
+                str1 = str1.slice(1); 
+            }else{
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    strs.sort((a, b) => b.length - a.length);
+    
+    for(let i = 0; i < strs.length; i++){
+        let maxCompareTimes = strs.length - 1;
+        let notSubSequenceTimes = 0;
+        for(let j = 0; j < strs.length; j++){
+            if(i !== j){
+                if(!isSubSequence(strs[i], strs[j])){
+                    notSubSequenceTimes++; 
+                }
+            }            
+        }
+        if(maxCompareTimes === notSubSequenceTimes){
+            return strs[i].length;
+        }
+    }
+    return -1;
+    
+};
+findLUSlength(["aaa","aaa","aa"]);
+</script>
+</html>

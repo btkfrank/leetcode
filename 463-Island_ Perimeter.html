@@ -1,0 +1,31 @@
+<html>
+<script>
+
+var islandPerimeter = function(grid) {
+    let land = 0;
+    let overlapEdge = 0;
+    for(let i = 0; i < grid.length; i++){
+        for(let j = 0; j < grid[0].length; j++){
+            if(grid[i][j] === 1){
+                land ++;                
+                if((i-1) >=0 && grid[i-1][j] === 1){
+                    overlapEdge++;    
+                }
+                if((j-1) >= 0 && grid[i][j-1] === 1){
+                    overlapEdge++;    
+                }
+                if((i+1) < grid.length && grid[i+1][j] === 1){
+                    overlapEdge++;    
+                }
+                if((j+1) < grid[0].length && grid[i][j+1] === 1){
+                    overlapEdge++;    
+                }
+            }
+        }
+    }
+    return land*4 - overlapEdge;
+};
+
+islandPerimeter([[0,1,0,0],[1,1,1,0],[0,1,0,0],[1,1,0,0]]);
+</script>
+</html>

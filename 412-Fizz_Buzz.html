@@ -1,0 +1,27 @@
+<html>
+<script>
+/**
+ * @param {number} n
+ * @return {string[]}
+ */
+var fizzBuzz = function(n) {
+    var nums = [];
+    for(var i = 1; i <= n; i++) {
+        nums.push(i);
+    }
+    return nums.map(num => {
+        if(num % 15 === 0){
+            return 'FizzBuzz';
+        }else if(num % 3 === 0) {
+            return 'Fizz';
+        }else if(num % 5 === 0) {
+            return 'Buzz';
+        }else{
+            return num.toString();
+        }
+    })
+};
+
+fizzBuzz(3);
+</script>
+</html>
