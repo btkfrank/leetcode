@@ -1,0 +1,19 @@
+<html>
+<script>
+
+var judgeCircle = function(moves) {
+    let steps = {'L': 0, 'R': 0, 'U': 0, 'D': 0};
+    for(let i = 0; i < moves.length; i++){
+        steps[moves.charAt(i)]++;
+    }
+    if(steps.L === steps.R && steps.U === steps.D){
+        return true;
+    }else{
+        return false;
+    }
+};
+
+console.log(judgeCircle("UD"));
+
+</script>
+</html>

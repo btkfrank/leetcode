@@ -1,0 +1,20 @@
+<html>
+<script>
+var getSum = function(a, b) {
+    
+    if(b == 0){//when no carry, return sum
+        return a;
+    }
+    
+    let sum, carry;
+
+    sum = a ^ b;//calculate sum of a and b without thinking the carry 
+    carry = (a & b) << 1;//calculate the carry
+
+    return getSum(sum, carry);//add sum(without carry) and carry
+    
+};
+
+getSum(1,2);
+</script>
+</html>

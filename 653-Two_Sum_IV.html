@@ -1,0 +1,28 @@
+<html>
+<script>
+
+var findTarget = function(root, k) {
+    let set = new Set();
+    let found = false;
+    
+    let pushValue = function(node){
+        if(found) return;        
+        else if(!node) return;
+        else{            
+            if(set.has(k - node.val)){
+                found = true;
+                return;                    
+            }                  
+            set.add(node.val);
+            pushValue(node.left);
+            pushValue(node.right);
+        }
+    }        
+    pushValue(root);    
+    return found;        
+};
+
+console.log(findTarget([5,3,6,2,4,null,7]));
+
+</script>
+</html>
