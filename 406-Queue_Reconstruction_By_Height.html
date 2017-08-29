@@ -1,0 +1,37 @@
+<html>
+<script>
+    /**
+     * @param {number[][]} people
+     * @return {number[][]}
+     */
+    var reconstructQueue = function (people) {
+        let peopleObj = {};
+        for (let person of people) {
+            typeof peopleObj[person[0]] === 'undefined' ? peopleObj[person[0]] = [person] : peopleObj[person[0]].push(person);
+        }
+
+        let keys = Object.keys(peopleObj).sort((a, b) => a - b);
+
+        for (let key of keys) {
+            peopleObj[key].sort((objA, objB) => objA[1] - objB[1]);
+        }
+
+        let ret = peopleObj[keys.pop()];
+
+        while (keys.length > 0) {
+            let height = keys.pop();
+            let groupPeople = peopleObj[height];
+            for (let i = 0; i < groupPeople.length; i++) {
+                ret.splice(groupPeople[i][1], 0, groupPeople[i]);
+            }
+        }
+
+        return typeof ret === 'undefined' ? [] : ret;
+
+    };
+
+    reconstructQueue([[7, 0], [4, 4], [7, 1], [5, 0], [6, 1], [5, 2]]);
+
+</script>
+
+</html>

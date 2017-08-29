@@ -1,0 +1,66 @@
+<html>
+<script>
+    /**
+ * @param {number} n
+ * @return {string[]}
+ */
+    var numberOfArithmeticSlices = function (A) {
+        let count = 0;
+
+        let getCount = function (a, indexA, b, indexB, interval) {
+            if (indexA === indexB) {
+                for (let j = 1; j < A.length / 2; j++) {
+                    if (indexA - j >= 0 && indexB + j < A.length) {
+                        if (A[indexA - j] - a === b - A[indexB + j]) {
+                            // console.log([A[indexA - j], a, b, A[indexB + j]]);
+                            count++;
+                        } else {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }else{
+                let found = false;
+                for (let j = 1; j < A.length / 2; j++) {
+                    if (indexA - j >= 0 && indexB + j < A.length) {
+                        if (A[indexA - j] - a === b - A[indexB + j]) {
+                            if(A[indexA - j] - a === a - b || found){
+                                count++;
+                                let found = true;
+                            }                            
+                        } else {
+                            break;
+                        }
+                    } else {
+                        break;
+                    }
+                }
+            }           
+        }
+
+        for (let i = 1; i < A.length; i++) {
+            getCount(A[i], i, A[i], i);
+            i + 1 < A.length ? getCount(A[i], i, A[i + 1], i + 1, A[i+1]-A[i]) : null;
+        }
+        return count;
+    };
+
+    var numberOfArithmeticSlices2 = function(A){
+        let curr = 0, sum = 0;
+
+        for (let i = 2; i < A.length; i++)
+            if (A[i] - A[i - 1] == A[i - 1] - A[i - 2]) {
+                curr += 1;
+                sum += curr;
+            } else {
+                curr = 0;
+            }
+        return sum;   
+    }
+    numberOfArithmeticSlices([1, 2, 3, 4, 5, 6]);
+
+</script>
+
+</html>

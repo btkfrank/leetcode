@@ -19,8 +19,7 @@ var maxProfit2 = function(prices) {//O(n^2)
         return max;
     }        
     let maxes = [];    
-    while(prices.length !== 0){
-        debugger;
+    while(prices.length !== 0){        
         maxes.push(getMax(prices));
         prices.shift();
     }        

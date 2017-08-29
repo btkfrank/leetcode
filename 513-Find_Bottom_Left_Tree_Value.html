@@ -1,0 +1,57 @@
+<html>
+<script>
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val) {
+     *     this.val = val;
+     *     this.left = this.right = null;
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number}
+     */
+    var findBottomLeftValue = function (root) {
+
+        let h = 0;
+        let ret = root.val;
+
+        let findBottom = function (node, level) {
+            if (level > h) {
+                h = level;
+                ret = node.val;
+            }
+
+            if (node.left) {
+                findBottom(node.left, level + 1);
+            }
+            if (node.right) {
+                findBottom(node.right, level + 1);
+            }
+        }
+
+        findBottom(root, 0);
+
+        return ret;
+    };
+    
+    var findBottomLeftValue2 = function (root) {
+
+        let array = [];
+        let ret;
+        array.push(root);
+        while (array.length > 0) {
+            let node = array.shift();
+            ret = node.val;
+            node.right ? array.push(node.right) : null;
+            node.left ? array.push(node.left) : null;
+        }
+
+        return ret;
+    };    
+
+
+    
+</script>
+
+</html>

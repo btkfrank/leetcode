@@ -1,0 +1,29 @@
+<html>
+<script>
+    /**
+     * Definition for a binary tree node.
+     * function TreeNode(val) {
+     *     this.val = val;
+     *     this.left = this.right = null;
+     * }
+     */
+    /**
+     * @param {TreeNode} root
+     * @return {number[]}
+     */
+    var largestValues = function (root) {
+
+        let ret = [];
+
+        let findMax = function (node, level) {
+            ret[level] = (typeof ret[level] === 'undefined') ? node.val : Math.max(ret[level], node.val);
+            node.left ? findMax(node.left, level + 1) : null;
+            node.right ? findMax(node.right, level + 1) : null;
+        }
+        root ? findMax(root, 0) : null;
+        return ret;
+    };
+
+</script>
+
+</html>
