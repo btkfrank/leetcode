@@ -1,0 +1,29 @@
+<html>
+<script>
+/**
+* @param {character[]} tasks
+* @param {number} n
+* @return {number}
+*/
+var leastInterval = function(tasks, n) {
+    let taskObj = {};
+    for(let task of tasks){
+        typeof taskObj[task] === 'undefined' ? taskObj[task] = 1 : taskObj[task]++;
+    }
+    
+    let arr = Object.keys(taskObj).map(key => taskObj[key]).sort((a,b) => b-a);
+    
+    let count = 0;
+    for(let i = 0; i < arr.length; i++){
+        if(arr[0] === arr[i]){
+            count++;
+        }
+    }
+    return Math.max((arr[0] - 1) * (n + 1) + count, tasks.length);
+    
+ };
+    
+console.log(leastInterval(['A','A','A','B','B','B']));
+    
+</script>
+</html>

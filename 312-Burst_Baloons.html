@@ -1,0 +1,70 @@
+<html>
+    <script>
+    var maxCoins = function(nums) {        
+        let dp = new Array(nums.length);
+        for(let i = 0; i < dp.length; i++){
+            dp[i] = new Array(nums.length);
+        }        
+        function findMax(start, end){
+            let max = 0;
+            if(dp[start][end] > 0){
+                console.log('1: dp[ %s ] [ %s ]= %d', start, end, dp[start][end]);
+                return dp[start][end];
+            }
+            else if(start === end){
+                console.log('2: dp[ %s ] [ %s ]= %d', start, end, nums[start]);
+                dp[start][end] = nums[start];
+                return nums[start];
+            }
+            else{
+                for(let i = start; i < end; i++){
+                    let coins = nums[i] * getValue(i-1) * getValue(i+1);
+                    coins += i != start ? findMax(start, i ) : 0; // If not first one, we can add subrange on its start.
+                    // console.log(coins);
+                    coins += i != end ? findMax(i , end) : 0;
+                    // console.log(coins);
+                    max = Math.max(max, coins);
+                }
+                dp[start][end] = max;
+                console.info('3: dp[ %s ] [ %s ]= %d', start, end, max);
+                return max;
+            }            
+        }        
+        function getValue(i){
+            return (i === -1 || i === nums.length) ? 1 : nums[i];
+        }        
+        findMax(0, nums.length-1);        
+        return dp[0][nums.length-1];        
+    };
+
+    // var maxCoins2 = function(iNums) {        
+    //     let nums = new Array(iNums.length + 2);
+    //     let n = 1;
+    //     for (let x of iNums) if (x > 0) nums[n++] = x;
+    //     nums[0] = 1;
+    //     nums[n++] = 1
+    
+    //     let memo = new Array(nums.length);
+    //     for(let i = 0; i < memo.length; i++){
+    //         memo[i] = new Array(nums.length);
+    //     }  
+        
+    //     function burst(left, right) {
+    //         if (left + 1 == right) return 0;
+    //         if (memo[left][right] > 0) return memo[left][right];
+    //         let ans = 0;
+    //         for (let i = left + 1; i < right; ++i)
+    //             ans = Math.max(ans, nums[left] * nums[i] * nums[right] 
+    //             + burst(left, i) + burst(i, right));
+    //         memo[left][right] = ans;
+    //         return ans;
+    //     }
+        
+    //     return burst(0, n - 1);        
+    // };
+
+    console.log(maxCoins([3,1,5,8]));
+
+    </script>
+</html>
+

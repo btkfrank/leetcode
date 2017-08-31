@@ -1,0 +1,35 @@
+<html>
+    <script>
+/**
+ * @param {number[]} A
+ * @param {number[]} B
+ * @param {number[]} C
+ * @param {number[]} D
+ * @return {number}
+ */
+    var fourSumCount = function(A, B, C, D) {
+        let map = new Map();
+        let count = 0;
+        for(let a of A){
+            for(let b of B){
+                let sum = a + b;
+                map.has(sum) ? map.set(sum, map.get(sum)+1) : map.set(sum, 1);
+            }
+        }
+        
+        for(let c of C) {
+            for(let d of D) {
+                let sum = c + d;
+                map.has(-sum) ? count = count + map.get(-sum) : null;
+            }
+        }
+                
+        return count;        
+        
+    };
+    
+    fourSumCount([1,2], [-2,-1], [-1,2], [0,2]);
+    
+    </script>
+    
+    </html>
