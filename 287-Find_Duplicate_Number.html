@@ -1,0 +1,42 @@
+<html>
+    <script>
+    /**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findDuplicate = function(nums) {
+    
+    nums.sort((a,b)=> a-b);
+    return findDu(nums[0], nums[nums.length-1]);
+    
+    function findDu(start, end){
+        let mid = (start + end)/2;
+        
+        let i = 0;
+        for(; i < nums.length; i++){//find where to start count
+            if(nums[i] >= start){
+               break;
+            }
+        }
+        
+        let count = 0;
+        while(nums[i] <= mid){
+            i++;
+            count++;
+        }
+        
+        if(start === end && count > 1){
+            return start;
+        }        
+        
+        
+        if(count > mid-start+1){
+            return findDu(start, Math.floor(mid));
+        }else{
+            return findDu(Math.ceil(mid), end);
+        }
+    }
+    
+};
+</script>
+</html>

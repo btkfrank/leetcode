@@ -1,0 +1,26 @@
+<html>
+    <script>
+/**
+ * @param {number[]} timeSeries
+ * @param {number} duration
+ * @return {number}
+ */
+ var findPoisonedDuration = function(timeSeries, duration) {
+    let total = 0;
+    for(let i = 0; i < timeSeries.length; i++){
+        // console.log('current' + timeSeries[i]);
+        // console.log('i=' + i);
+        if( i === timeSeries.length - 1 || timeSeries[i+1] - timeSeries[i] >= duration){
+            total = total + duration;
+            // console.log('here'+total);
+        }else{
+            total = total + timeSeries[i+1] - timeSeries[i];
+            // console.log('there'+total);
+        }
+    }
+    return total;
+};
+    
+findPoisonedDuration([1,4], 2);
+</script>
+</html>
